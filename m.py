@@ -6,8 +6,10 @@ import math
 
 import neuro_evolution
 
+import matplotlib.pyplot as plt
+
 BACKGROUND = (200, 200, 200)
-SCREEN_SIZE = (320, 480)
+SCREEN_SIZE = (480, 720)
 
 class Plane():
 	def __init__(self, plane_image):
@@ -101,6 +103,7 @@ class Game():
                 # load image of plane and enemy
 		self.plane_image = pygame.image.load('plane.png').convert_alpha()
 		self.enemy_image = pygame.image.load('enemy.png').convert_alpha()
+		self.score_list = []
 
 	def start(self):
 		self.score = 0
@@ -134,7 +137,11 @@ class Game():
 					self.alives -= 1
 					self.ai.network_score(self.score, self.gen[i])
 					if self.is_ai_all_dead():
-						self.start()
+                                                self.score_list.append(self.score)
+                                                plt.close()
+                                                plt.ion()
+                                                plt.plot(self.score_list)
+                                                self.start()
 
 		
 		self.gen_enemes()
