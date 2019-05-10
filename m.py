@@ -138,9 +138,8 @@ class Game():
 					self.ai.network_score(self.score, self.gen[i])
 					if self.is_ai_all_dead():
                                                 self.score_list.append(self.score)
-                                                plt.close()
                                                 plt.ion()
-                                                plt.plot(self.score_list)
+                                                plt.plot(self.score_list, 'b')
                                                 self.start()
 
 		
